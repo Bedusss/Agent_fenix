@@ -29,7 +29,7 @@ class GamePhase(Enum):
 
 class MinimaxAgent(Agent):
     """Agent utilisant l'algorithme Minimax avec élagage alpha-beta."""
-    def __init__(self, player: int, depth: int = 3):
+    def __init__(self, player: int, depth: int = 6):
         super().__init__(player)
         self.default_depth = depth
         self.transposition_table: Dict[str, float] = {}
@@ -118,7 +118,7 @@ class MinimaxAgent(Agent):
 
         for action in state.actions():
             new_state = state.result(action)
-            eval_score, _ = self._minimax(new_state, depth - 1, alpha, beta, new_state.to_move() == self.player)
+            eval_score, _ = self._minimax(new_state, depth - 1, alpha, beta, False)
 
             if eval_score > max_eval:
                 max_eval = eval_score
@@ -148,7 +148,7 @@ class MinimaxAgent(Agent):
 
         for action in state.actions():
             new_state = state.result(action)
-            eval_score, _ = self._minimax(new_state, depth - 1, alpha, beta, new_state.to_move() == self.player)
+            eval_score, _ = self._minimax(new_state, depth - 1, alpha, beta, False)
 
             if eval_score < min_eval:
                 min_eval = eval_score
