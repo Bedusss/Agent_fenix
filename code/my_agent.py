@@ -1,7 +1,7 @@
 import math
 from enum import Enum
 from typing import Dict, Optional, Tuple, Any
-
+from agent import Agent
 from fenix import FenixState
 
 
@@ -27,12 +27,10 @@ class GamePhase(Enum):
         self.max_pieces = max_pieces
         self.search_depth = search_depth
 
-
-class MinimaxAgent:
+class MinimaxAgent(Agent):
     """Agent utilisant l'algorithme Minimax avec élagage alpha-beta."""
-
     def __init__(self, player: int, depth: int = 3):
-        self.player = player
+        super().__init__(player)
         self.default_depth = depth
         self.transposition_table: Dict[str, float] = {}
         self.piece_values = {piece_type.id: piece_type.score for piece_type in PieceType}
