@@ -148,7 +148,7 @@ class MinimaxAgent(Agent):
 
         for action in state.actions():
             new_state = state.result(action)
-            eval_score, _ = self._minimax(new_state, depth - 1, alpha, beta, False)
+            eval_score, _ = self._minimax(new_state, depth - 1, alpha, beta, True)
 
             if eval_score < min_eval:
                 min_eval = eval_score
